@@ -94,7 +94,6 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="Explore our categories"
             title="Technology groups shaped around real lab and production workflows"
-            description="The home concept in your brochure highlights five primary categories. We recreated that structure here and linked each group to deeper product detail."
           />
           <div className="card-grid card-grid-fives">
             {categories.map((category) => (
@@ -128,7 +127,6 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="Industries we serve"
             title="Engineered for diamond, semiconductor, research, and nanotechnology programs"
-            description="The supplied homepage concept highlighted four sectors. We turned them into dedicated industry narratives so the site remains useful for both SEO and client presentations."
           />
           <div className="card-grid card-grid-four">
             {industries.map((industry) => (
@@ -195,8 +193,7 @@ export default function HomePage() {
         <div className="container">
           <SectionHeading
             eyebrow="Brochure references"
-            title="PDF content and visuals from the supplied CCT brochure are carried into the website"
-            description="The website content was mapped from the brochure pages you shared, including the original preview sheets, system images, and company material."
+            title="Detailed product documentation and technical specifications"
           />
           <BrochureGrid items={brochurePreviews.slice(0, 3)} />
         </div>

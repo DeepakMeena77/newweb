@@ -49,11 +49,11 @@ export function Header() {
             aria-label="Search equipment"
             name="search"
             onChange={(event) => setSearch(event.target.value)}
-            placeholder="Search equipment, systems, parts..."
+            placeholder="Search equipment..."
             type="search"
             value={search}
           />
-          <button type="submit">Search</button>
+          <button aria-label="Search" type="submit" />
         </form>
 
         <button
