@@ -29,7 +29,7 @@ export function ContactForm() {
       setStatus({
         state: 'error',
         message:
-          'EmailJS keys are not configured yet. Add them in .env.local before using the live form.',
+          'Online form setup is still in progress. Please call or email us directly for an immediate response.',
       });
       return;
     }
@@ -56,7 +56,7 @@ export function ContactForm() {
     } catch (error) {
       setStatus({
         state: 'error',
-        message: 'The inquiry could not be sent right now. Please try again in a moment.',
+        message: 'Your inquiry could not be sent right now. Please try again in a moment or contact us directly.',
       });
     }
   }
@@ -122,7 +122,7 @@ export function ContactForm() {
       <div className="form-footer">
         <div>
           <p className="form-note">
-            This form is wired for EmailJS and sends inquiries directly to {site.email}.
+            Your inquiry goes directly to {site.email}.
           </p>
           {status.message ? (
             <p className={`form-status is-${status.state}`}>{status.message}</p>

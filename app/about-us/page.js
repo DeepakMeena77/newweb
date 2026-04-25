@@ -26,7 +26,7 @@ export default function AboutPage() {
   return (
     <>
       <PageHero
-        description="The brochure describes CCT as a high-tech enterprise founded by professional engineers and focused on advanced thermal and CVD equipment. This page turns that material into a clearer company story."
+        description="CCT brings together engineering experience, custom system thinking, and dependable manufacturing for advanced thermal and CVD equipment."
         eyebrow="About Us"
         title="Engineering-led, application-aware, and built around dependable delivery"
       />
@@ -49,8 +49,8 @@ export default function AboutPage() {
           <div className="content-panel">
             <h3>Positioning statement</h3>
             <p>
-              Driven by professionalism and innovation, CCT delivers reliable equipment and
-              solutions to clients worldwide.
+              CCT supports laboratories, industrial users, and advanced material teams with
+              reliable systems, practical guidance, and a strong focus on long-term performance.
             </p>
           </div>
         </div>
@@ -60,7 +60,7 @@ export default function AboutPage() {
         <div className="container">
           <SectionHeading
             eyebrow="Our strengths"
-            title="The icon set from the brochure is now translated into a cleaner company values grid"
+            title="The values behind our equipment, support, and delivery approach"
           />
           <div className="card-grid card-grid-four">
             {aboutHighlights.map((item) => (
@@ -87,15 +87,15 @@ export default function AboutPage() {
           </div>
           <div className="split-copy">
             <SectionHeading
-              eyebrow="What this page adds"
-              title="A brochure paragraph became a fuller trust-building page"
-              description="This gives the site a better balance between product content and company credibility, which is useful when your client shares the website with new leads."
+              eyebrow="Why clients trust CCT"
+              title="A company profile built around support, credibility, and long-term collaboration"
+              description="From system design to delivery and after-sales guidance, CCT focuses on practical engineering support at every step."
             />
             <div className="content-panel">
-              <h3>Website advantage</h3>
+              <h3>What customers value</h3>
               <p>
-                Buyers often look for the team and company story before sending an inquiry. A
-                stronger About page makes the website feel more complete and more trustworthy.
+                Buyers often want fast responses, honest technical guidance, and room for
+                customization. CCT is built to support all three.
               </p>
             </div>
           </div>

@@ -20,7 +20,7 @@ export default function TechnicalArticlesPage() {
   return (
     <>
       <PageHero
-        description="The brochure includes research references focused on microwave plasma CVD and single crystal diamond growth. We preserved them here as a dedicated technical credibility page."
+        description="Explore research references related to microwave plasma CVD, single-crystal diamond growth, and the technical foundations behind advanced deposition workflows."
         eyebrow="Technical Articles"
         title="Research references that support the CCT process narrative"
       />
@@ -29,7 +29,7 @@ export default function TechnicalArticlesPage() {
         <div className="container">
           <SectionHeading
             eyebrow="Referenced papers"
-            title="The same technical references from the supplied PDF, reformatted for the web"
+            title="Selected technical references relevant to CCT applications"
           />
           <div className="stack-section">
             {technicalArticles.map((article) => (
@@ -50,9 +50,9 @@ export default function TechnicalArticlesPage() {
         <div className="container split-section">
           <div className="split-copy">
             <SectionHeading
-              eyebrow="Why keep this page"
-              title="Technical depth helps both buyers and organic search visibility"
-              description="A dedicated article page adds trust signals, supports expertise-driven SEO, and gives the brand a stronger narrative beyond product specifications alone."
+            eyebrow="Why technical context matters"
+            title="Helpful reading for teams comparing processes, materials, and capabilities"
+            description="Research context helps buyers, engineers, and academic teams connect equipment choices with real process outcomes."
             />
             <ul className="bullet-list">
               <li>Supports technical buyers who want validation beyond marketing copy</li>

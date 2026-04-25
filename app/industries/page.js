@@ -49,7 +49,7 @@ export default function IndustriesPage() {
             Discuss Your Application
           </Link>
         }
-        description="The original home concept positioned CCT around four key sectors. This page expands those sectors into practical application language for buyers, researchers, and search engines."
+        description="CCT equipment supports diamond growth, semiconductor coating, nanomaterial development, and research workflows with scalable process control."
         eyebrow="Industries"
         title="Technology platforms aligned with target industries and application goals"
       />
@@ -58,8 +58,8 @@ export default function IndustriesPage() {
         <div className="container">
           <SectionHeading
             eyebrow="Core sectors"
-            title="Built for the industries shown in the supplied homepage concept"
-            description="Each sector below is represented in the brochure and connected to the matching product families across the site."
+            title="Technology platforms built for CCT's core application sectors"
+            description="Each sector below connects directly to the equipment families used across the site."
           />
           <div className="card-grid card-grid-four">
             {industries.map((industry) => (
@@ -78,7 +78,7 @@ export default function IndustriesPage() {
             <SectionHeading
               eyebrow="Application capabilities"
               title="From early-stage material development to production-oriented coating workflows"
-              description="The equipment range spans multiple process requirements, which makes the site stronger when it speaks to use cases instead of only listing machine names."
+            description="The equipment range spans multiple process requirements, from early-stage experimentation to more mature process and coating workflows."
             />
             <div className="capability-list">
               {capabilityRows.map((item) => (
@@ -92,7 +92,7 @@ export default function IndustriesPage() {
           <div className="split-copy">
             <SectionHeading
               eyebrow="Matching product groups"
-              title="The industry story now maps cleanly back to the brochure product categories"
+              title="Each industry need connects directly to a matching product family"
             />
             <div className="footer-links">
               {categories.map((category) => (
@@ -102,11 +102,10 @@ export default function IndustriesPage() {
               ))}
             </div>
             <div className="content-panel">
-              <h3>Why this helps SEO</h3>
+              <h3>Why this matters</h3>
               <p>
-                Search engines understand intent better when industry pages explain where the
-                systems are used, not just how they are named. That gives this static website more
-                chances to rank for application-focused searches.
+                It becomes easier for buyers to match their process goals with the right type of
+                system when the site is organized around applications as well as machine names.
               </p>
               <Link className="button button-secondary" href="/products/">
                 Explore Product Catalog

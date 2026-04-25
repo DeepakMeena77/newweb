@@ -13,7 +13,7 @@ export const metadata = buildMetadata({
   keywords: [
     'contact CCT',
     'CVD equipment inquiry',
-    'EmailJS quote form',
+    'quote request',
     'Navi Mumbai industrial equipment company',
   ],
 });
@@ -29,7 +29,7 @@ export default function ContactPage() {
       />
 
       <PageHero
-        description="The contact information from the brochure is now combined with a working inquiry form that can email the client directly through EmailJS, with no backend required."
+        description="Reach CCT for product inquiries, quote requests, custom system discussions, and technical consultation."
         eyebrow="Contact Us"
         title="Talk to CCT about materials, systems, and technical consultation"
       />
@@ -39,8 +39,8 @@ export default function ContactPage() {
           <div className="split-copy">
             <SectionHeading
               eyebrow="Support channels"
-              title="We'd love to hear from you"
-              description="Have a question? Reach out by phone, email, or the form below. All contact details are sourced from the provided brochure."
+            title="Reach our team directly"
+            description="Call, email, or send an inquiry and we will help you identify the right system or material."
             />
             <div className="channel-list">
               {supportChannels.map((channel) => (
@@ -71,8 +71,8 @@ export default function ContactPage() {
         <div className="container">
           <SectionHeading
             eyebrow="Inquiry form"
-            title="Send a direct quote or product inquiry"
-            description="This form is implemented on the frontend using EmailJS so it can work without an admin panel or backend service."
+            title="Send a quote or consultation request"
+            description="Tell us about your application, target material, or system requirement and the team will respond with the right next step."
           />
           <ContactForm />
         </div>

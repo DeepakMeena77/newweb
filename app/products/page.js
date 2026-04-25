@@ -39,7 +39,7 @@ export default function ProductsPage() {
             </Link>
           </>
         }
-        description="The brochure supplied by you includes both advanced diamond material products and multiple equipment classes. We consolidated those into a cleaner product experience while preserving the same core content."
+        description="Explore CCT's range of diamond materials, MPCVD platforms, and thin-film deposition systems for research, pilot, and production-oriented workflows."
         eyebrow="Product Range"
         title="Diamond materials, deposition systems, and thin-film equipment"
       />
@@ -49,7 +49,7 @@ export default function ProductsPage() {
           <SectionHeading
             eyebrow="Diamond materials"
             title="Electronic-grade, optical-grade, and semiconductor-ready diamond products"
-            description="The product range page in the brochure highlights high-purity diamond plates and wafers across p-type, n-type, optical, and semiconductor-grade formats."
+            description="High-purity plate and wafer formats for electronic, optical, semiconductor, and advanced materials applications."
           />
           <div className="card-grid card-grid-two">
             {materials.map((item) => (
@@ -71,8 +71,8 @@ export default function ProductsPage() {
         <div className="container">
           <SectionHeading
             eyebrow="Equipment catalog"
-            title="Seven brochure-backed systems arranged into a single SEO-friendly catalog"
-            description="Instead of scattering product information across separate PDF-style pages, the website groups each system into a structured section with applications, key features, and warranty details where provided."
+            title="System catalog for deposition, coating, and advanced material growth"
+            description="Each platform below highlights its core applications, major features, and operating strengths to make selection easier."
           />
           <div className="product-summary-grid">
             {equipment.map((item) => (
@@ -154,9 +154,9 @@ export default function ProductsPage() {
       <section className="section section-muted">
         <div className="container">
           <SectionHeading
-            eyebrow="Original brochure sheets"
-            title="PDF product references preserved alongside the web experience"
-            description="The product range and homepage brochure pages are also included here as supporting visuals from the original source file."
+            eyebrow="Downloadable references"
+            title="Product brochure sheets for detailed visual reference"
+            description="Use these supporting pages when you need a printable overview alongside the website catalog."
           />
           <BrochureGrid items={brochureItems} />
         </div>

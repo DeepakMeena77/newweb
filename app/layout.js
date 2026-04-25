@@ -1,16 +1,16 @@
-import { Manrope, Sora } from 'next/font/google';
+import { Oxanium, Plus_Jakarta_Sans } from 'next/font/google';
 import { Footer } from '@/components/footer';
 import { Header } from '@/components/header';
 import { site } from '@/lib/site-data';
 import { siteUrl } from '@/lib/seo';
 import './globals.css';
 
-const headingFont = Sora({
+const headingFont = Oxanium({
   subsets: ['latin'],
   variable: '--font-heading',
 });
 
-const bodyFont = Manrope({
+const bodyFont = Plus_Jakarta_Sans({
   subsets: ['latin'],
   variable: '--font-body',
 });
