@@ -1,16 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { BrochureGrid } from '@/components/brochure-grid';
-import { SectionHeading } from '@/components/section-heading';
-import {
-  benefits,
-  brochurePreviews,
-  categories,
-  equipment,
-  industries,
-  site,
-  supportChannels,
-} from '@/lib/site-data';
+import { categories, industries, site, supportChannels } from '@/lib/site-data';
 import { buildMetadata, buildOrganizationSchema } from '@/lib/seo';
 
 export const metadata = buildMetadata({
@@ -27,55 +17,119 @@ export const metadata = buildMetadata({
   ],
 });
 
-const heroStats = [
-  {
-    value: '2021',
-    label: 'Founded by engineers focused on advanced material systems',
-  },
-  {
-    value: `${categories.length}`,
-    label: 'Core technology families across deposition and coating',
-  },
-  {
-    value: `${equipment.length}+`,
-    label: 'System lines for labs, pilot programs, and production goals',
-  },
-  {
-    value: `${industries.length}`,
-    label: 'Target sectors from diamond growth to semiconductor R&D',
-  },
-];
+// Category icon SVGs (inline, matching screenshot style)
+const categoryIcons = {
+  'MPCVD Systems': (
+    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" width="40" height="40">
+      <rect x="8" y="20" width="48" height="30" rx="4" fill="currentColor" opacity="0.18"/>
+      <rect x="16" y="28" width="32" height="16" rx="2" fill="currentColor" opacity="0.35"/>
+      <rect x="22" y="8" width="20" height="14" rx="2" fill="currentColor" opacity="0.55"/>
+      <rect x="28" y="4" width="8" height="6" rx="1" fill="currentColor"/>
+      <rect x="14" y="46" width="8" height="8" rx="1" fill="currentColor" opacity="0.7"/>
+      <rect x="42" y="46" width="8" height="8" rx="1" fill="currentColor" opacity="0.7"/>
+    </svg>
+  ),
+  'HFCVD Systems': (
+    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" width="40" height="40">
+      <rect x="6" y="22" width="24" height="28" rx="3" fill="currentColor" opacity="0.2"/>
+      <rect x="34" y="22" width="24" height="28" rx="3" fill="currentColor" opacity="0.2"/>
+      <rect x="10" y="26" width="16" height="18" rx="2" fill="currentColor" opacity="0.45"/>
+      <rect x="38" y="26" width="16" height="18" rx="2" fill="currentColor" opacity="0.45"/>
+      <rect x="24" y="18" width="16" height="8" rx="2" fill="currentColor" opacity="0.6"/>
+      <circle cx="32" cy="14" r="4" fill="currentColor"/>
+      <rect x="10" y="50" width="44" height="4" rx="2" fill="currentColor" opacity="0.5"/>
+    </svg>
+  ),
+  'Thermal CVD Systems': (
+    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" width="40" height="40">
+      <rect x="8" y="16" width="48" height="36" rx="4" fill="currentColor" opacity="0.18"/>
+      <rect x="16" y="24" width="32" height="20" rx="2" fill="currentColor" opacity="0.35"/>
+      <rect x="20" y="8" width="24" height="10" rx="2" fill="currentColor" opacity="0.55"/>
+      <line x1="24" y1="28" x2="24" y2="40" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+      <line x1="32" y1="28" x2="32" y2="40" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+      <line x1="40" y1="28" x2="40" y2="40" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+    </svg>
+  ),
+  'Sputtering Systems': (
+    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" width="40" height="40">
+      <polygon points="32,8 52,48 12,48" fill="currentColor" opacity="0.18"/>
+      <polygon points="32,18 46,44 18,44" fill="currentColor" opacity="0.35"/>
+      <line x1="20" y1="52" x2="44" y2="52" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+      <circle cx="32" cy="30" r="5" fill="currentColor" opacity="0.75"/>
+    </svg>
+  ),
+  'Electron / Thermal Evaporation': (
+    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" width="40" height="40">
+      <rect x="10" y="30" width="44" height="24" rx="4" fill="currentColor" opacity="0.2"/>
+      <rect x="18" y="36" width="12" height="12" rx="2" fill="currentColor" opacity="0.5"/>
+      <rect x="36" y="36" width="12" height="12" rx="2" fill="currentColor" opacity="0.5"/>
+      <path d="M22 30 Q32 10 42 30" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+      <circle cx="32" cy="12" r="4" fill="currentColor"/>
+    </svg>
+  ),
+};
 
-const showcaseSystems = [
-  {
-    slug: 'mpcvd-10kw-12kw',
-    accent: 'cyan',
-    label: 'Flagship platform',
-  },
-  {
-    slug: 'mpcvd-6kw',
-    accent: 'amber',
-    label: 'Compact precision',
-  },
-  {
-    slug: 'electron-beam-evaporation-system',
-    accent: 'violet',
-    label: 'Thin-film specialist',
-  },
-]
-  .map((entry) => ({
-    ...entry,
-    item: equipment.find((system) => system.slug === entry.slug),
-  }))
-  .filter((entry) => entry.item);
+// Industry icon SVGs
+const industryIcons = {
+  'CVD Diamond': (
+    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" width="38" height="38">
+      <polygon points="32,6 56,24 48,54 16,54 8,24" fill="currentColor" opacity="0.22"/>
+      <polygon points="32,14 50,28 44,50 20,50 14,28" fill="currentColor" opacity="0.4"/>
+      <polygon points="32,22 44,32 40,46 24,46 20,32" fill="currentColor" opacity="0.65"/>
+    </svg>
+  ),
+  'Semiconductor': (
+    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" width="38" height="38">
+      <rect x="18" y="18" width="28" height="28" rx="2" fill="currentColor" opacity="0.25"/>
+      <rect x="24" y="24" width="16" height="16" rx="1" fill="currentColor" opacity="0.55"/>
+      <line x1="10" y1="26" x2="18" y2="26" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+      <line x1="10" y1="38" x2="18" y2="38" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+      <line x1="46" y1="26" x2="54" y2="26" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+      <line x1="46" y1="38" x2="54" y2="38" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+      <line x1="26" y1="10" x2="26" y2="18" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+      <line x1="38" y1="10" x2="38" y2="18" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+      <line x1="26" y1="46" x2="26" y2="54" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+      <line x1="38" y1="46" x2="38" y2="54" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+    </svg>
+  ),
+  'Research & Academics': (
+    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" width="38" height="38">
+      <path d="M32 10 L22 28 L26 28 L20 46 L44 46 L38 28 L42 28 Z" fill="currentColor" opacity="0.25"/>
+      <path d="M32 16 L25 30 L28 30 L24 42 L40 42 L36 30 L39 30 Z" fill="currentColor" opacity="0.55"/>
+      <rect x="22" y="46" width="20" height="4" rx="2" fill="currentColor" opacity="0.6"/>
+      <rect x="26" y="50" width="12" height="4" rx="2" fill="currentColor" opacity="0.45"/>
+    </svg>
+  ),
+  'Nanotechnology': (
+    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" width="38" height="38">
+      <circle cx="32" cy="32" r="6" fill="currentColor" opacity="0.7"/>
+      <ellipse cx="32" cy="32" rx="20" ry="8" stroke="currentColor" strokeWidth="2" fill="none" opacity="0.6"/>
+      <ellipse cx="32" cy="32" rx="20" ry="8" stroke="currentColor" strokeWidth="2" fill="none" opacity="0.4" transform="rotate(60 32 32)"/>
+      <ellipse cx="32" cy="32" rx="20" ry="8" stroke="currentColor" strokeWidth="2" fill="none" opacity="0.4" transform="rotate(120 32 32)"/>
+    </svg>
+  ),
+};
+
+// Accent colors per category — exact match to screenshot
+// Each entry: { icon: icon foreground color, bg: icon tile background color }
+const categoryAccents = {
+  'MPCVD Systems':              { icon: '#2e8b57', bg: '#d4f0e0' },
+  'HFCVD Systems':              { icon: '#c8611a', bg: '#fde8d4' },
+  'Thermal CVD Systems':        { icon: '#5a7080', bg: '#dde6ee' },
+  'Sputtering Systems':         { icon: '#2666b0', bg: '#d4e4f8' },
+  'Electron / Thermal Evaporation': { icon: '#7040a8', bg: '#e8dcf4' },
+};
+
+// Industry card full-card background gradients — exact match to screenshot
+const industryAccents = {
+  'CVD Diamond':        { bg: 'linear-gradient(145deg, #7ed8b8 0%, #48c09a 100%)', color: '#0d4030' },
+  'Semiconductor':      { bg: 'linear-gradient(145deg, #78c878 0%, #4aa44a 100%)', color: '#0c3010' },
+  'Research & Academics': { bg: 'linear-gradient(145deg, #f0a84a 0%, #d47e20 100%)', color: '#4a2000' },
+  'Nanotechnology':     { bg: 'linear-gradient(145deg, #c0a0e0 0%, #9870c8 100%)', color: '#2c0c5a' },
+};
 
 export default function HomePage() {
   const organizationSchema = buildOrganizationSchema();
-  const flagshipSystem = equipment.find((item) => item.slug === 'mpcvd-10kw-12kw');
-  const compactSystem = equipment.find((item) => item.slug === 'mpcvd-6kw');
-  const evaporationSystem = equipment.find(
-    (item) => item.slug === 'electron-beam-evaporation-system',
-  );
 
   return (
     <>
@@ -84,271 +138,154 @@ export default function HomePage() {
         type="application/ld+json"
       />
 
-      <section className="hero">
-        <div className="container hero-grid">
-          <div className="hero-copy">
-            <div className="hero-brand-line">
-              <Image
-                alt={`${site.shortName} logo mark`}
-                className="hero-brand-logo"
-                height={56}
-                priority
-                src={site.logoPath}
-                width={56}
-              />
-              <span>Mumbai-built systems for deposition, coating, and advanced material growth</span>
-            </div>
-            <p className="section-kicker">Advanced CVD / MPCVD / Thin Film Engineering</p>
-            <h1>{site.name}</h1>
-            <p className="hero-tagline">{site.tagline}</p>
-            <p className="hero-description">
-              Precision-built platforms for semiconductor programs, diamond growth,
-              nanotechnology, and research teams that want sharp process control with a stronger
-              industrial presence.
-            </p>
-            <div className="hero-actions">
-              <Link className="button button-primary" href="/products/">
-                Browse Equipment
-              </Link>
-              <Link className="button button-secondary" href="/contact/">
-                Request Quote
-              </Link>
-            </div>
-
-            <div className="hero-pill-row">
-              {benefits.map((item) => (
-                <span key={item}>{item}</span>
-              ))}
-            </div>
+      {/* ── HERO ── */}
+      <section className="hp-hero">
+        <div className="hp-hero-overlay" />
+        <div className="container hp-hero-inner">
+          <h1>{site.name}</h1>
+          <p className="hp-hero-sub">{site.tagline}</p>
+          <div className="hp-hero-actions">
+            <Link className="hp-btn hp-btn-primary" href="/products/">
+              Browse Equipment
+            </Link>
+            <Link className="hp-btn hp-btn-secondary" href="/contact/">
+              Request Quote
+            </Link>
           </div>
-
-          <div className="hero-stage">
-            <div className="hero-system-card hero-system-card-left">
-              <span>Compact power</span>
-              <strong>{compactSystem?.title}</strong>
-              <Image
-                alt={compactSystem?.title || '6 kW MPCVD system'}
-                className="hero-product hero-product-compact"
-                height={720}
-                src={compactSystem?.image || '/6%20kW%20MPCVD%20System.png'}
-                width={720}
-              />
-            </div>
-
-            <div className="hero-system-card hero-system-card-main">
-              <div className="hero-system-copy">
-                <span>Flagship machine</span>
-                <strong>{flagshipSystem?.title}</strong>
-                <p>{flagshipSystem?.summary}</p>
-              </div>
-              <Image
-                alt={flagshipSystem?.title || '10 and 12 kW MPCVD system'}
-                className="hero-product"
-                height={1040}
-                priority
-                src={flagshipSystem?.image || '/10_12%20kW%20MPCVD%20System.png'}
-                width={1040}
-              />
-            </div>
-
-            <div className="hero-system-card hero-system-card-right">
-              <span>Thin-film coating</span>
-              <strong>{evaporationSystem?.title}</strong>
-              <Image
-                alt={evaporationSystem?.title || 'Electron beam evaporation system'}
-                className="hero-product hero-product-ebe"
-                height={760}
-                src={evaporationSystem?.image || '/Electron%20beam%20evaporation.png'}
-                width={960}
-              />
-            </div>
-          </div>
-        </div>
-
-        <div className="container hero-metrics">
-          {heroStats.map((item) => (
-            <article key={item.label}>
-              <strong>{item.value}</strong>
-              <span>{item.label}</span>
-            </article>
-          ))}
         </div>
       </section>
 
-      <section className="section">
+      {/* ── EXPLORE CATEGORIES ── */}
+      <section className="hp-section">
         <div className="container">
-          <SectionHeading
-            eyebrow="System spotlight"
-            title="High-visibility machine presentations for the systems buyers ask about first"
-            description="CCT combines compact lab-ready equipment, scalable MPCVD platforms, and thin-film coating systems in one sharper visual lineup."
-          />
-          <div className="showcase-grid">
-            {showcaseSystems.map(({ accent, item, label }) => (
-              <article className={`showcase-card accent-${accent}`} key={item.slug}>
-                <div className="showcase-media">
-                  <Image alt={item.title} height={860} src={item.image} width={1080} />
-                </div>
-                <div className="showcase-copy">
-                  <span>{label}</span>
-                  <h3>{item.title}</h3>
-                  <p>{item.summary}</p>
-                  <ul className="showcase-points">
-                    {item.features.slice(0, 3).map((point) => (
-                      <li key={point}>{point}</li>
-                    ))}
-                  </ul>
-                  <Link href={`/products/#${item.slug}`}>View specifications</Link>
-                </div>
-              </article>
-            ))}
+          <h2 className="hp-section-title">Explore Our Categories</h2>
+          <div className="hp-categories-grid">
+            {categories.map((cat) => {
+              const accent = categoryAccents[cat.title] || { icon: '#2e7fff', bg: '#d8e8ff' };
+              return (
+                <Link
+                  className="hp-category-card"
+                  href={`/products/${cat.anchor}`}
+                  key={cat.title}
+                >
+                  <div
+                    className="hp-category-icon"
+                    style={{ backgroundColor: accent.bg, color: accent.icon }}
+                  >
+                    {categoryIcons[cat.title]}
+                  </div>
+                  <span className="hp-category-label">{cat.title}</span>
+                </Link>
+              );
+            })}
+          </div>
+          <div className="hp-view-all">
+            <Link href="/products/" className="hp-view-all-link">
+              View All Categories &gt;
+            </Link>
           </div>
         </div>
       </section>
 
-      <section className="benefits-band">
-        <div className="container benefits-grid">
-          <div>
-            <p className="section-kicker">Why teams choose CCT</p>
-            <h2>Bold presentation outside, serious engineering inside, and dependable support after delivery</h2>
-          </div>
-          <div className="benefits-list">
-            {benefits.map((item) => (
-              <span key={item}>{item}</span>
-            ))}
+      {/* ── WHY CHOOSE US ── */}
+      <section className="hp-why-band">
+        <div className="container hp-why-inner">
+          <h2 className="hp-why-title">Why Choose Us</h2>
+          <div className="hp-why-benefits">
+            <span>✓ Genuine Products</span>
+            <span>✓ Best Prices</span>
+            <span>✓ Fast Delivery</span>
+            <span>✓ Warranty Support</span>
           </div>
         </div>
       </section>
 
-      <section className="section">
+      {/* ── INDUSTRIES WE SERVE ── */}
+      <section className="hp-section">
         <div className="container">
-          <SectionHeading
-            eyebrow="Technology lanes"
-            title="Five product families shaped around real lab, coating, and material-growth workflows"
-          />
-          <div className="tech-lattice">
-            {categories.map((category, index) => (
-              <article className={`lattice-card accent-${category.accent}`} key={category.title}>
-                <span className="lattice-number">{String(index + 1).padStart(2, '0')}</span>
-                <h3>{category.title}</h3>
-                <p>{category.description}</p>
-                <Link href={`/products/${category.anchor}`}>Explore technology</Link>
-              </article>
-            ))}
+          <h2 className="hp-section-title">Industries We Serve</h2>
+          <div className="hp-industries-grid">
+            {industries.map((ind) => {
+              const accent = industryAccents[ind.title] || { bg: 'linear-gradient(135deg,#cce,#99c)', color: '#333' };
+              return (
+                <Link
+                  className="hp-industry-card"
+                  href={`/industries/#${ind.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
+                  key={ind.title}
+                  style={{ background: accent.bg, '--ind-color': accent.color }}
+                >
+                  <div className="hp-industry-icon" style={{ color: accent.color }}>
+                    {industryIcons[ind.title]}
+                  </div>
+                  <span className="hp-industry-label" style={{ color: accent.color }}>
+                    {ind.title}
+                  </span>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      <section className="section section-muted">
-        <div className="container">
-          <SectionHeading
-            eyebrow="Industries we serve"
-            title="Engineered for diamond growth, semiconductor deposition, research labs, and nanotechnology programs"
-          />
-          <div className="card-grid card-grid-four">
-            {industries.map((industry) => (
-              <article className={`industry-card accent-${industry.accent}`} key={industry.title}>
-                <h3>{industry.title}</h3>
-                <p>{industry.description}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="cta-band">
-        <div className="container cta-band-inner">
-          <div>
-            <p className="section-kicker">Ready to move from inquiry to system selection?</p>
-            <h2>Talk to CCT about the right platform for your material, throughput, and process goals.</h2>
-          </div>
-          <div className="cta-actions">
-            <a className="button button-primary" href={`tel:${site.phoneRaw}`}>
-              Call Now
+      {/* ── NEED HELP CTA ── */}
+      <section className="hp-help-band">
+        <div className="container hp-help-inner">
+          <h2 className="hp-help-title">Need Help Choosing the Right Equipment?</h2>
+          <div className="hp-help-actions">
+            <a className="hp-btn hp-btn-primary" href={`tel:${site.phoneRaw}`}>
+              📞 Call Now
             </a>
-            <a className="button button-secondary" href={`mailto:${site.email}`}>
-              Email Us
+            <a className="hp-btn hp-btn-secondary" href={`mailto:${site.email}`}>
+              ✉ Email Us
             </a>
-            <Link className="button button-primary" href="/contact/">
+            <Link className="hp-btn hp-btn-outline" href="/contact/">
               Get Expert Consultation
             </Link>
           </div>
         </div>
       </section>
 
-      <section className="section">
-        <div className="container split-section">
-          <div className="split-media story-machine-gallery">
-            <div className="gallery-panel">
-              <Image
-                alt="CCT 6 kW MPCVD system"
-                className="media-frame"
-                height={820}
-                src="/6%20kW%20MPCVD%20System.png"
-                width={820}
-              />
-            </div>
-            <div className="gallery-panel gallery-panel-alt">
-              <Image
-                alt="CCT electron beam evaporation system"
-                className="media-frame"
-                height={760}
-                src="/Electron%20beam%20evaporation.png"
-                width={960}
-              />
-            </div>
+      {/* ── ABOUT SECTION ── */}
+      <section className="hp-section">
+        <div className="container hp-about-inner">
+          <div className="hp-about-image">
+            <Image
+              alt="CCT MPCVD System"
+              src="/6%20kW%20MPCVD%20System.png"
+              width={260}
+              height={260}
+              style={{ objectFit: 'contain' }}
+            />
           </div>
-          <div className="split-copy">
-            <div className="story-panel">
-              <div className="story-logo">
-                <Image alt={`${site.shortName} logo`} height={220} src={site.logoPath} width={220} />
-              </div>
-              <div>
-                <SectionHeading
-                  eyebrow="About Carbon Carat Technology LLP"
-                  title="Practical engineering for high-performance CVD and quantum material systems"
-                  description="Founded by a team of professional engineers, CCT designs both standard and custom systems with a focus on quality, competitive cost, and application-specific support."
-                />
-              </div>
-            </div>
-            <ul className="bullet-list">
-              <li>High-temperature CVD equipment from 700 C to 1200 C, extendable up to 1700 C</li>
-              <li>Customized solutions tailored to customer requirements</li>
-              <li>Strong manufacturing base with reliable quality control</li>
-              <li>Fast response and customer-focused support</li>
-            </ul>
-            <Link className="button button-primary" href="/about-us/">
+          <div className="hp-about-copy">
+            <h2 className="hp-about-title">About {site.name}</h2>
+            <p className="hp-about-sub">High-Performance CVD &amp; Quantum Material Systems</p>
+            <Link className="hp-btn hp-btn-primary" href="/about-us/">
               Learn More
             </Link>
           </div>
         </div>
       </section>
 
-      <section className="section section-muted">
-        <div className="container">
-          <SectionHeading
-            eyebrow="Reference deck"
-            title="Brochure sheets and technical previews for teams that want the deeper product view"
-          />
-          <BrochureGrid items={brochurePreviews.slice(0, 3)} />
-        </div>
-      </section>
-
-      <section className="section section-tight">
-        <div className="container contact-strip">
-          {supportChannels.map((channel) => (
+      {/* ── FOOTER CONTACT STRIP ── */}
+      <div className="hp-contact-strip">
+        <div className="container hp-contact-strip-inner">
+          {supportChannels.map((ch) => (
             <a
-              className="contact-chip"
-              href={channel.href}
-              key={channel.title}
+              className="hp-contact-chip"
+              href={ch.href}
+              key={ch.title}
               rel="noreferrer"
               target="_blank"
             >
-              <span>{channel.title}</span>
-              <strong>{channel.value}</strong>
+              <span className="hp-contact-chip-icon">
+                {ch.title === 'Phone' ? '📞' : ch.title === 'Email' ? '✉' : '📍'}
+              </span>
+              <span>{ch.value}</span>
             </a>
           ))}
         </div>
-      </section>
+      </div>
     </>
   );
 }

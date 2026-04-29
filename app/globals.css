@@ -1656,3 +1656,411 @@ strong {
     padding: 3rem 0 2.2rem;
   }
 }
+
+/* ============================================================
+   HOME PAGE STYLES  (hp-*)
+   ============================================================ */
+
+/* ── HERO ── */
+.hp-hero {
+  position: relative;
+  min-height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background:
+    url('/10_12%20kW%20MPCVD%20System.png') center / cover no-repeat,
+    linear-gradient(135deg, #0a2a6e 0%, #1255b0 50%, #0e6ec4 100%);
+  overflow: hidden;
+  padding: 4rem 1rem 3rem;
+}
+
+.hp-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(6,24,74,0.82) 0%, rgba(10,60,140,0.78) 50%, rgba(8,80,170,0.72) 100%);
+}
+
+.hp-hero-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.hp-hero h1 {
+  font-size: clamp(1.9rem, 5vw, 3.2rem);
+  color: #fff;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.4);
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.hp-hero-sub {
+  font-size: clamp(1rem, 2.5vw, 1.35rem);
+  color: rgba(255,255,255,0.92);
+  font-weight: 500;
+  margin: 0;
+}
+
+.hp-hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 0.75rem;
+}
+
+/* ── BUTTONS ── */
+.hp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.72rem 1.6rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 150ms ease, box-shadow 150ms ease, opacity 150ms ease;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.hp-btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.93;
+}
+
+.hp-btn-primary {
+  background: linear-gradient(135deg, #1a5dc8 0%, #0d3d9e 100%);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(20,70,180,0.32);
+}
+
+.hp-btn-secondary {
+  background: linear-gradient(135deg, #f5c518 0%, #e0a800 100%);
+  color: #1a1000;
+  box-shadow: 0 6px 18px rgba(220,160,0,0.28);
+}
+
+.hp-btn-outline {
+  background: rgba(255,255,255,0.14);
+  border: 2px solid rgba(255,255,255,0.7);
+  color: #fff;
+}
+
+/* ── SECTION SHARED ── */
+.hp-section {
+  padding: 2.6rem 0 2rem;
+  background: #f4f8ff;
+}
+
+.hp-section:nth-of-type(even) {
+  background: #eef3fb;
+}
+
+.hp-section-title {
+  font-size: clamp(1.25rem, 3vw, 1.65rem);
+  color: #0d2a6e;
+  font-weight: 800;
+  margin-bottom: 1.4rem;
+  line-height: 1.2;
+}
+
+/* ── CATEGORIES ── */
+.hp-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.hp-category-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 1.4rem 0.8rem 1.2rem;
+  border-radius: 12px;
+  background: #fff;
+  border: 1.5px solid rgba(180,200,240,0.5);
+  box-shadow: 0 4px 14px rgba(30,80,180,0.08);
+  text-decoration: none;
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+  cursor: pointer;
+}
+
+.hp-category-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(30,80,180,0.18);
+  border-color: rgba(100,150,240,0.55);
+}
+
+.hp-category-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 14px;
+  /* background-color and color set via inline style from categoryAccents */
+  transition: filter 160ms ease, transform 160ms ease;
+}
+
+.hp-category-card:hover .hp-category-icon {
+  filter: brightness(1.08);
+  transform: scale(1.06);
+}
+
+.hp-category-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #1a2f5e;
+  text-align: center;
+  line-height: 1.35;
+}
+
+.hp-view-all {
+  margin-top: 1.2rem;
+  text-align: center;
+}
+
+.hp-view-all-link {
+  color: #1a5dc8;
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-decoration: none;
+  transition: color 140ms ease;
+}
+
+.hp-view-all-link:hover {
+  color: #0d3d9e;
+  text-decoration: underline;
+}
+
+/* ── WHY CHOOSE US BAND ── */
+.hp-why-band {
+  background: linear-gradient(135deg, #0d3d9e 0%, #0a2a6e 100%);
+  padding: 1.8rem 0;
+}
+
+.hp-why-inner {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.hp-why-title {
+  color: #fff;
+  font-size: 1.35rem;
+  font-weight: 800;
+  white-space: nowrap;
+  margin: 0;
+  line-height: 1.2;
+  flex-shrink: 0;
+}
+
+.hp-why-benefits {
+  display: flex;
+  gap: 1.8rem;
+  flex-wrap: wrap;
+}
+
+.hp-why-benefits span {
+  color: rgba(255,255,255,0.92);
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+/* ── INDUSTRIES ── */
+.hp-industries-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.hp-industry-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.6rem 1rem 1.4rem;
+  border-radius: 14px;
+  text-decoration: none;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+
+.hp-industry-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.14);
+}
+
+.hp-industry-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+}
+
+.hp-industry-label {
+  font-size: 0.88rem;
+  font-weight: 800;
+  text-align: center;
+  line-height: 1.3;
+}
+
+/* ── HELP CTA BAND ── */
+.hp-help-band {
+  background: linear-gradient(135deg, #0a2a6e 0%, #1255b0 50%, #0e6ec4 100%);
+  padding: 2.4rem 0;
+  text-align: center;
+}
+
+.hp-help-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4rem;
+}
+
+.hp-help-title {
+  color: #fff;
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  font-weight: 800;
+  margin: 0;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.24);
+}
+
+.hp-help-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* ── ABOUT SECTION ── */
+.hp-about-inner {
+  display: flex;
+  align-items: center;
+  gap: 2.4rem;
+}
+
+.hp-about-image {
+  flex: 0 0 auto;
+  background: rgba(200,220,255,0.18);
+  border-radius: 14px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hp-about-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.hp-about-title {
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  color: #0d2a6e;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.hp-about-sub {
+  color: #4a6080;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* ── CONTACT STRIP ── */
+.hp-contact-strip {
+  background: linear-gradient(135deg, #0d3d9e 0%, #0a2a6e 100%);
+  padding: 1.2rem 0;
+}
+
+.hp-contact-strip-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.hp-contact-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: rgba(255,255,255,0.92);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 140ms ease;
+}
+
+.hp-contact-chip:hover {
+  color: #fff;
+}
+
+.hp-contact-chip-icon {
+  font-size: 1.1rem;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .hp-categories-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .hp-industries-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hp-about-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hp-why-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .hp-why-benefits {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .hp-categories-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hp-industries-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hp-hero {
+    padding: 3rem 1rem 2.5rem;
+  }
+
+  .hp-contact-strip-inner {
+    gap: 1.2rem;
+  }
+
+  .hp-help-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
