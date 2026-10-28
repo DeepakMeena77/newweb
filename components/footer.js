@@ -32,7 +32,6 @@ export function Footer() {
         </div>
 
         <div>
-          <h3>Navigation</h3>
           <div className="footer-links">
             {navigation.map((item) => (
               <Link href={item.href} key={item.href}>

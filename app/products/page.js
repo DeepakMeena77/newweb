@@ -89,67 +89,80 @@ export default function ProductsPage() {
 
       <section className="section">
           <div className="container stack-section">
-            {equipment.map((item) => (
-              <div key={item.slug}>
-                {item.slug === 'mpcvd-6kw' ? <span className="anchor-target" id="mpcvd" /> : null}
-                {item.slug === 'hfcvd-diamond-system' ? (
-                  <span className="anchor-target" id="hfcvd" />
-                ) : null}
-                {item.slug === 'thermal-cvd-system' ? (
-                  <span className="anchor-target" id="thermal-cvd" />
-                ) : null}
-                {item.slug === 'magnetron-sputtering-system' ? (
-                  <span className="anchor-target" id="sputtering" />
-                ) : null}
-                {item.slug === 'electron-beam-evaporation-system' ? (
-                  <span className="anchor-target" id="evaporation" />
-                ) : null}
+            {equipment.map((item) => {
+              const hasMachinePhoto = [
+                'mpcvd-6kw',
+                'mpcvd-10kw-12kw',
+                'electron-beam-evaporation-system',
+              ].includes(item.slug);
+              return (
+                <div key={item.slug}>
+                  {item.slug === 'mpcvd-6kw' ? <span className="anchor-target" id="mpcvd" /> : null}
+                  {item.slug === 'hfcvd-diamond-system' ? (
+                    <span className="anchor-target" id="hfcvd" />
+                  ) : null}
+                  {item.slug === 'thermal-cvd-system' ? (
+                    <span className="anchor-target" id="thermal-cvd" />
+                  ) : null}
+                  {item.slug === 'magnetron-sputtering-system' ? (
+                    <span className="anchor-target" id="sputtering" />
+                  ) : null}
+                  {item.slug === 'electron-beam-evaporation-system' ? (
+                    <span className="anchor-target" id="evaporation" />
+                  ) : null}
 
-                <article className="product-detail" id={item.slug}>
-                  <div className="product-detail-media">
-                    <Image alt={item.title} height={800} src={item.image} width={900} />
-                  </div>
-                  <div className="product-detail-copy">
-                    <p className="section-kicker">{item.category}</p>
-                    <h2>{item.title}</h2>
-                    <p className="lead-copy">{item.summary}</p>
+                  <article
+                    className={`product-detail${hasMachinePhoto ? '' : ' product-detail-no-media'}`}
+                    id={item.slug}
+                  >
+                    {hasMachinePhoto && (
+                      <div className="product-detail-media">
+                        <Image alt={item.title} height={800} src={item.image} width={900} />
+                      </div>
+                    )}
+                    <div className="product-detail-copy">
+                      <p className="section-kicker">{item.category}</p>
+                      <h2>{item.title}</h2>
+                      <p className="lead-copy">{item.summary}</p>
 
-                    <div className="detail-columns">
-                      <div>
-                        <h3>Applications</h3>
-                        <ul className="bullet-list">
-                          {item.applications.map((point) => (
-                            <li key={point}>{point}</li>
-                          ))}
-                        </ul>
+                      <div className="detail-columns">
+                        <div>
+                          <h3>Applications</h3>
+                          <ul className="bullet-list">
+                            {item.applications.map((point) => (
+                              <li key={point}>{point}</li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h3>Key Features</h3>
+                          <ul className="bullet-list">
+                            {item.features.map((point) => (
+                              <li key={point}>{point}</li>
+                            ))}
+                          </ul>
+                        </div>
                       </div>
 
-                      <div>
-                        <h3>Key Features</h3>
-                        <ul className="bullet-list">
-                          {item.features.map((point) => (
-                            <li key={point}>{point}</li>
-                          ))}
-                        </ul>
-                      </div>
+                      {item.warranty.length ? (
+                        <div className="warranty-box">
+                          <h3>Warranty</h3>
+                          <ul className="bullet-list">
+                            {item.warranty.map((point) => (
+                              <li key={point}>{point}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      ) : null}
                     </div>
-
-                    {item.warranty.length ? (
-                      <div className="warranty-box">
-                        <h3>Warranty</h3>
-                        <ul className="bullet-list">
-                          {item.warranty.map((point) => (
-                            <li key={point}>{point}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    ) : null}
-                  </div>
-                </article>
-              </div>
-            ))}
+                  </article>
+                </div>
+              );
+            })}
           </div>
       </section>
+
 
       <section className="section section-muted">
         <div className="container">

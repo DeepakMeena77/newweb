@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { categories, industries, site, supportChannels } from '@/lib/site-data';
+import { categories, industries, site } from '@/lib/site-data';
 import { buildMetadata, buildOrganizationSchema } from '@/lib/seo';
 
 export const metadata = buildMetadata({
@@ -267,25 +267,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── FOOTER CONTACT STRIP ── */}
-      <div className="hp-contact-strip">
-        <div className="container hp-contact-strip-inner">
-          {supportChannels.map((ch) => (
-            <a
-              className="hp-contact-chip"
-              href={ch.href}
-              key={ch.title}
-              rel="noreferrer"
-              target="_blank"
-            >
-              <span className="hp-contact-chip-icon">
-                {ch.title === 'Phone' ? '📞' : ch.title === 'Email' ? '✉' : '📍'}
-              </span>
-              <span>{ch.value}</span>
-            </a>
-          ))}
-        </div>
-      </div>
     </>
   );
 }

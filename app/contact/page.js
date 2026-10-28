@@ -35,34 +35,22 @@ export default function ContactPage() {
       />
 
       <section className="section">
-        <div className="container split-section">
-          <div className="split-copy">
-            <SectionHeading
-              eyebrow="Support channels"
+        <div className="container">
+          <SectionHeading
+            eyebrow="Support channels"
             title="Reach our team directly"
             description="Call, email, or send an inquiry and we will help you identify the right system or material."
-            />
-            <div className="channel-list">
-              {supportChannels.map((channel) => (
-                <a className="channel-card" href={channel.href} key={channel.title} rel="noreferrer" target="_blank">
-                  <Image alt={channel.title} height={79} src={channel.image} width={79} />
-                  <div>
-                    <span>{channel.title}</span>
-                    <strong>{channel.value}</strong>
-                  </div>
-                </a>
-              ))}
-            </div>
-          </div>
-
-          <div className="split-media">
-            <Image
-              alt="Contact brochure preview"
-              className="media-frame"
-              height={1080}
-              src="/assets/brochure/contact-sheet.png"
-              width={760}
-            />
+          />
+          <div className="channel-list">
+            {supportChannels.map((channel) => (
+              <a className="channel-card" href={channel.href} key={channel.title} rel="noreferrer" target="_blank">
+                <Image alt={channel.title} height={79} src={channel.image} width={79} />
+                <div>
+                  <span>{channel.title}</span>
+                  <strong>{channel.value}</strong>
+                </div>
+              </a>
+            ))}
           </div>
         </div>
       </section>

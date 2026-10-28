@@ -1107,6 +1107,10 @@ strong {
   box-shadow: var(--shadow);
 }
 
+.product-detail.product-detail-no-media {
+  grid-template-columns: 1fr;
+}
+
 .product-detail-media,
 .product-detail-copy {
   min-width: 0;
